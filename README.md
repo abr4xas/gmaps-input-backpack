@@ -17,6 +17,12 @@ Publish package assets with:
 // TODO
 ```
 
+Add your Google Api Key to the env file:
+
+```
+GOOGLE_MAPS_API_KEY= 
+```
+
 Add this to your backpack controller:
 
 ```php
