@@ -40,3 +40,7 @@ $this->crud->addField([
 #### Preview:
 
 ![Custom Google Maps Input for Laravel Backpack](custom-google-map-input-backpack-field.png "Custom Google Maps Input for Laravel Backpack")
+
+
+
+Thanks to https://laraveldaily.com/laravel-find-addresses-with-coordinates-via-google-maps-api/ for the inspiration.
