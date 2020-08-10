@@ -1,18 +1,36 @@
 <!-- field_type_name -->
-<div @include('crud::inc.field_wrapper_attributes') >
+<div @include('crud::inc.field_wrapper_attributes')>
     <label>{!! $field['label'] !!}</label>
-    <input 
-        type="text" 
-        id="{{ $field['name'] }}" 
-        name="{{ $field['name'] }}" 
+    <input type="text" id="{{ $field['name'] }}" name="{{ $field['name'] }}"
         value="{{ old($field['name']) ? old($field['name']) : (isset($field['value']) ? $field['value'] : (isset($field['default']) ? $field['default'] : '' )) }}"
-        @include('crud::inc.field_attributes')
-    >
+        @include('crud::inc.field_attributes')>
     <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
     <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
     <div id="address-map-container" style="width:100%;height:400px; ">
         <div style="width: 100%; height: 100%" id="address-map"></div>
     </div>
+
+    {{-- HINT --}}
+    @if (isset($field['hint']))
+    <p class="help-block">{!! $field['hint'] !!}</p>
+    @endif
+</div>
+
+@if ($crud->checkIfFieldIsFirstOfItsType($field, $fields))
+{{-- FIELD EXTRA CSS  --}}
+{{-- push things in the after_styles section --}}
+
+@push('crud_fields_styles')
+<!-- no styles -->
+@endpush
+
+{{-- FIELD EXTRA JS --}}
+{{-- push things in the after_scripts section --}}
+
+@push('crud_fields_scripts')
+<!-- no scripts -->
+<script
+    src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
     <script>
         function initialize() {
 
@@ -87,35 +105,14 @@
 
                 });
             }
-            }
+        }
 
-            function setLocationCoordinates(key, lat, lng) {
+        function setLocationCoordinates(key, lat, lng) {
             const latitudeField = document.getElementById(key + "-" + "latitude");
             const longitudeField = document.getElementById(key + "-" + "longitude");
             latitudeField.value = lat;
             longitudeField.value = lng;
         }
     </script>
-
-    {{-- HINT --}}
-    @if (isset($field['hint']))
-        <p class="help-block">{!! $field['hint'] !!}</p>
-    @endif
-</div>
-
-@if ($crud->checkIfFieldIsFirstOfItsType($field, $fields))
-  {{-- FIELD EXTRA CSS  --}}
-  {{-- push things in the after_styles section --}}
-
-      @push('crud_fields_styles')
-          <!-- no styles -->
-      @endpush
-
-  {{-- FIELD EXTRA JS --}}
-  {{-- push things in the after_scripts section --}}
-
-      @push('crud_fields_scripts')
-          <!-- no scripts -->
-        <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
-      @endpush
-@endif 
+@endpush
+@endif

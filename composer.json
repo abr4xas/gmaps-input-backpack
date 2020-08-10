@@ -1,0 +1,41 @@
+{
+	"name": "abr4xas/gmaps-input-backpack",
+	"description": "Custom Google Maps Input for Laravel Backpack",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "angel cruz",
+			"email": "bullgram@gmail.com",
+			"homepage": "https://angelcruz.dev",
+			"role": "Developer"
+		}
+	],
+	"keywords": [
+		"Laravel",
+		"Backpack",
+		"Backpack for Laravel",
+		"Addon",
+		"Admin Panel",
+		"Google Maps"
+	],
+	"require": {},
+	"require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "Abr4xas\\CustomGoogleMapsFieldForBackpack\\": "src/"
+        }
+    },
+	"scripts": {},
+	"config": {
+		"sort-packages": true
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Abr4xas\\CustomGoogleMapsFieldForBackpack\\AddonServiceProvider"
+			]
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}

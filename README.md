@@ -6,21 +6,15 @@
 with composer:
 
 ```bash
-// TODO
+composer require abr4xas/gmaps-input-backpack
 ```
 
 #### How to use
 
-Publish package assets with:
-
-```bash
-// TODO
-```
-
 Add your Google Api Key to the env file:
 
 ```
-GOOGLE_MAPS_API_KEY= 
+GOOGLE_MAPS_API_KEY=
 ```
 
 Add this to your backpack controller:
@@ -34,8 +28,12 @@ $this->crud->addField([
     'attributes' => [
         'class' => 'form-control map-input', // do not change this, add more classes if needed
     ],
+    'view_namespace' => 'custom-google-maps-field-for-backpack::fields',
 ]);
 ```
+> Notice the view_namespace attribute - make sure that is exactly as above, to tell Backpack to load the field from this addon package, instead of assuming it's inside the Backpack\CRUD package.
+
+
 
 #### Preview:
 
