@@ -1,9 +1,10 @@
 <!-- field_type_name -->
-<div @include('crud::inc.field_wrapper_attributes')>
+@include('crud::fields.inc.wrapper_start')
+<div>
     <label>{!! $field['label'] !!}</label>
     <input type="text" id="{{ $field['name'] }}" name="{{ $field['name'] }}"
         value="{{ old($field['name']) ? old($field['name']) : (isset($field['value']) ? $field['value'] : (isset($field['default']) ? $field['default'] : '' )) }}"
-        @include('crud::inc.field_attributes')>
+            @include('crud::fields.inc.attributes')>
     <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
     <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
     <div id="address-map-container" style="width:100%;height:400px; ">
@@ -15,7 +16,7 @@
     <p class="help-block">{!! $field['hint'] !!}</p>
     @endif
 </div>
-
+@include('crud::fields.inc.wrapper_end')
 @if ($crud->checkIfFieldIsFirstOfItsType($field, $fields))
 {{-- FIELD EXTRA CSS  --}}
 {{-- push things in the after_styles section --}}
